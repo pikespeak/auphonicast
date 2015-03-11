@@ -23,12 +23,12 @@ function RenderEpisode($jsondata, $template, $renderedmedia) {
         ###   "metadata": {
         ###        "album": "rsff21 - en",
         ###        "publisher": "Volker Tanger",
-        ###        "subtitle": "RADIO.SF-Fantasy.de - Kreative Köpfe und phantastische Welten",
+        ###        "subtitle": "RADIO.SF-Fantasy.de - Kreative Kpfe und phantastische Welten",
         ###        "license": "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Germany",
         ###        "artist": "Radio SF-Fantasy.de",
         ###        "track": "Ronald D. Moore - between Writer and Producer",
         ###        "title": "sff21 en - Ronald D. Moore - between Writer and Producer",
-        ###        "summary": "Ron Moore \"kennt man\" als Fan von Science-Fiction Serien. \r\nNicht? \r\nWen er da gespielt haben soll? \r\n\r\nNiemanden - aber ohne ihn hätte es viele Serien gar nicht erst gegeben - oder zumindest nicht in diese Form. Und die Liste der Serien hat es in sich: Star Trek The Next Generation, Star Trek Deep Space Nine, Star Trek Voyager, Battlestar Galactica (die neue Serie), und viele mehr. Hatte er bei TNG zuerst \"nur\" als einfacher Drehbuchschreiber angefangen, so war er später hauptverantwortlicher Autor und Produzent.\r\n\r\nNur: wie kommt man zu so einem Job? Wie hält man Business und Ideen auseinander? Wie arbeitet man eigentlich als Drehbuchautor und wie unterscheidet sich das von den Kollegen, die Romane schreiben? \r\n\r\nFragen über Fragen - und wir haben die Antworten.\r\n;-)\r\n\r\n(Podcast und Interview sind komplett in englischer Sprache)\r\n\r\nIMDB-Eintrag von Ronald D. Moore\r\nhttp://www.imdb.com/name/nm0601822/?ref_=fn_al_nm_1",
+        ###        "summary": "Ron Moore \"kennt man\" als Fan von Science-Fiction Serien. \r\nNicht? \r\nWen er da gespielt haben soll? ....1",
         ###        "url": "http://radio.sf-fantasy.de/",
         ###        "license_url": "http://creativecommons.org/licenses/by-nc-nd/3.0/de/",
         ###    },
@@ -48,7 +48,8 @@ function RenderEpisode($jsondata, $template, $renderedmedia) {
         $template = str_replace( "*minutes*" , $minuten, $template);
         $datum = substr($jsondata{"change_time"},0,10);
         $template = str_replace( "*date*" , $datum, $template);
-        $template = str_replace( "*date_rfc822*" , date(DATE_RFC822,strtotime($datum)), $template);
+        $template = str_replace( "*GUID*" , sha1($datum . $meta{"title"}), $template);
+        $template = str_replace( "*date_rfc822*" , date("r",strtotime($datum)), $template);
         $template = str_replace( "*MEDIA*" , $renderedmedia, $template);
 
         return $template;

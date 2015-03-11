@@ -1,27 +1,42 @@
-<?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"; $mediatype = preg_replace("/[^A-Za-z0-9_.]/", "", $_GET["typ"]); if (""==$mediatyp){$mediatyp="mp3";} ?>
-<!-----------------------------------------------------------------------------
-# rss.php (simple RSS feed) 
+<?php
+$mediatype = preg_replace("/[^A-Za-z0-9_.]/", "", $_GET["typ"]);
+if (""==$mediatyp){$mediatyp="mp3";}
+#-----------------------------------------------------------------------------
+# rss.php (simple RSS feed)
 # https://github.com/wyae/auphonicast/
 # 2015 by Volker Tanger <volker.tanger_git@wyae.de> published under GPLv3
------------------------------------------------------------------------------->
+#-----------------------------------------------------------------------------
 
-<rss version="2.0">
+$BASEURL        = "http://radio.example.com/";
+$FEEDURL        = $BASEURL . "rss.php?typ=" . $mediatyp;
+$AUDIOURL       = $BASEURL . "podcasts/";
+$PODCASTTITLE   = "phantastic podcast stuff - " . $mediatype . " feed";
+$SUBTITLE       = "podcast radio claim here";
+$AUPHONICDIR    = "/var/www/podcasts";
+
+#-----------------------------------------------------------------------------
+echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
 <channel>
-<title>ENTER title here - podcast - <?php echo $mediatype; ?> feed</title>
-<link>ENTER url of the feed here /rss.php?typ=$mediatyp</link>
-<description><![CDATA[
-        ENTER description here
-]]></description>
-<lastBuildDate><?php date(DATE_RFC822); ?></lastBuildDate>
+<atom:link href="<?php echo $FEEDURL; ?>" rel="self" type="application/rss+xml" />
+<title><?php echo $PODCASTTITLE; ?></title>
+<link><?php echo $FEEDURL; ?></link>
+<description><![CDATA[<?php echo $SUBTITLE; ?>]]></description>
+<lastBuildDate><?php echo date("r", filemtime($AUPHONICDIR)); ?></lastBuildDate>
 <language>de</language>
 
 <?php
-include("auphonicast/renderauphonic.php");
+header('Content-type: application/rss+xml; charset=utf-8');
+include("renderauphonic.php");
 
-$episodetemplate = "<item> <title><![CDATA[*title*]]></title><link>ENTER url of page here/?podcast=*title*</link><guid>ENTER url of page here/?podcast=*title*</guid><pubDate>*date_rfc822*</pubDate><description><![CDATA[ *date* <br />*summary* ]]></description> *MEDIA*</item>";
-$mediatemplate = "<enclosure type=\"audio/*EXT*\" url=\"*URL*?src=rss\" length=\"*BYTES*\" />";
+$episodetemplate = "<item>\n  <title><![CDATA[*title*]]></title>\n  <link>" . $BASEURL . "</link>\n  <guid>" . $BASEURL . "?guid=*GUID*</guid>\n  <pubDate>*date_rfc822*</pubDate>\n  <description><![CDATA[ *date$
+$mediatemplate = "<enclosure type=\"audio/*EXT*\" url=\"" . $AUDIOURL . "*URL*?src=rss\" length=\"*BYTES*\" />\n";
 
-RenderAuphonic("../podcasts/", "http://url.to.auphonic/directory/", ".", ".mp3", $episodetemplate, $mediatemplate);
+RenderAuphonic($AUPHONICDIR . "/", $AUDIOURL, ".", $mediatype, $episodetemplate, $mediatemplate);
 ?>
 
+
 </channel>
+</rss>
