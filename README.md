@@ -7,8 +7,8 @@ You can configure the service to push the created audio files to your server (e.
 Auphonicast is a PHP script that runs through these files and creates a web page and rss feed from these.
 Once set up you only need to provide the title, description and podcast audio to auphonic, and publishing is automatic.
 
-> renderauphonic.php (library) 
-> https://github.com/wyae/auphonicast/
-> 2015 by Volker Tanger <volker.tanger_git@wyae.de> published under GPLv3
+	renderauphonic.php (library) 
+	https://github.com/wyae/auphonicast/
+	2015 by Volker Tanger <volker.tanger_git@wyae.de> published under GPLv3
 
 
