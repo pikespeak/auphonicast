@@ -1,3 +1,11 @@
+<?php
+#------------------------------------------------------------------------------
+# renderauphonic.php (library) 
+# https://github.com/wyae/auphonicast/
+# 2015 by Volker Tanger <volker.tanger_git@wyae.de> published under GPLv3
+#------------------------------------------------------------------------------
+
+function ReadFilenames($auphonicdir) {
         $jsfn = array();
 
         foreach (glob($auphonicdir . "*.json") as $filename) {

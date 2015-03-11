@@ -1,3 +1,9 @@
+<!-----------------------------------------------------------------------------
+# index.php (stub index page) 
+# https://github.com/wyae/auphonicast/
+# 2015 by Volker Tanger <volker.tanger_git@wyae.de> published under GPLv3
+------------------------------------------------------------------------------>
+
 <?php
 include("renderauphonic.php");
 

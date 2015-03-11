@@ -1,4 +1,10 @@
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"; $mediatype = preg_replace("/[^A-Za-z0-9_.]/", "", $_GET["typ"]); if (""==$mediatyp){$mediatyp="mp3";} ?>
+<!-----------------------------------------------------------------------------
+# rss.php (simple RSS feed) 
+# https://github.com/wyae/auphonicast/
+# 2015 by Volker Tanger <volker.tanger_git@wyae.de> published under GPLv3
+------------------------------------------------------------------------------>
+
 <rss version="2.0">
 <channel>
 <title>ENTER title here - podcast - <?php echo $mediatype; ?> feed</title>
