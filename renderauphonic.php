@@ -59,7 +59,7 @@ function RenderAuphonic( $AUPHONICDIR, $AUPHONICURL, $NAMEFILTER, $EXTENSION, $T
                         $mediaout = "";
                         foreach ( $jnput{"output_files"} as $o ) {
                                 if ( ("descr" != $o{"format"}) and ("stats" != $o{"format"}) and (false !== strrpos($o{"filename"}, $EXTENSION)) ) {
-                                        $mediaout = $mediaout . str_replace( "*EXT*", $o{"format"}, str_replace( "*URL*", $AUPHONICURL . $o{"filename"}, str_replace( "*SIZE*", $o{"size_string"}, $MEDIATEMPLATE)));
+                                        $mediaout = $mediaout . str_replace( "*BYTES*", $o{"size"},str_replace( "*EXT*", $o{"format"}, str_replace( "*URL*", $AUPHONICURL . $o{"filename"}, str_replace( "*SIZE*", $o{"size_string"}, $MEDIATEMPLATE))));
                                 }
                         }
                         if ( "" != $mediaout ) {

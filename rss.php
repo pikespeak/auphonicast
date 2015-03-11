@@ -13,7 +13,7 @@
 include("renderauphonic.php");
 
 $episodetemplate = "<item> <title><![CDATA[*title*]]></title><link>ENTER url of page here?podcast=*title*</link><guid>ENTER url of page here?podcast=*title*</guid><pubDate>*date_rfc822*</pubDate><description><![CDATA[ *date* <br />*summary* ]]></description> *MEDIA*</item>";
-$mediatemplate = "<enclosure type=\"audio/*EXT*\" url=\"*URL*?src=rss\" length=\"*SIZE*\" />";
+$mediatemplate = "<enclosure type=\"audio/*EXT*\" url=\"*URL*?src=rss\" length=\"*BYTES*\" />";
 
 RenderAuphonic("../podcasts/", "http://url.to.auphonic/directory/", ".", ".mp3", $episodetemplate, $mediatemplate);
 ?>
