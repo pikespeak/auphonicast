@@ -31,7 +31,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 header('Content-type: application/rss+xml; charset=utf-8');
 include("renderauphonic.php");
 
-$episodetemplate = "<item>\n  <title><![CDATA[*title*]]></title>\n  <link>" . $BASEURL . "</link>\n  <guid>" . $BASEURL . "?guid=*GUID*</guid>\n  <pubDate>*date_rfc822*</pubDate>\n  <description><![CDATA[ *date$
+$episodetemplate = "<item>\n  <title><![CDATA[*title*]]></title>\n  <link>" . $BASEURL . "</link>\n  <guid>" . $BASEURL . "?guid=*GUID*</guid>\n  <pubDate>*date_rfc822*</pubDate>\n  <description><![CDATA[ *date* <br />*summary* ]]></description>\n  *MEDIA*\n</item>\n\n";
 $mediatemplate = "<enclosure type=\"audio/*EXT*\" url=\"" . $AUDIOURL . "*URL*?src=rss\" length=\"*BYTES*\" />\n";
 
 RenderAuphonic($AUPHONICDIR . "/", $AUDIOURL, ".", $mediatype, $episodetemplate, $mediatemplate);
